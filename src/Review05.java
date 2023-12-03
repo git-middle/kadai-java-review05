@@ -28,9 +28,9 @@ public class Review05 {
             spstmt = con.prepareStatement(selectSql);
 
             System.out.println("検索キーワードを入力してください>");
-            String str1 = keyIn();
+            int str1 = keyInNum();
 
-            spstmt.setString(1,str1);
+            spstmt.setInt(1,str1);
 
             rs = spstmt.executeQuery();
 
@@ -84,9 +84,19 @@ public class Review05 {
         try {
             BufferedReader key = new BufferedReader(new InputStreamReader(System.in));
             line = key.readLine();
-        }catch(IOException e) {
+        } catch (IOException e) {
 
-        }return line;
+        }
+        return line;
+    }
+
+    private static int keyInNum() {
+        int result = 0;
+        try {
+            result = Integer.parseInt(keyIn());
+        }catch(NumberFormatException e) {
+
+        }return result;
     }
 
 }
